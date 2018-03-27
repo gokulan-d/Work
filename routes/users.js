@@ -2,15 +2,16 @@
 	var router 		= 	express.Router();
 	var url 		= 	require('url'); 
 	var bodyParser 	= 	require('body-parser');
+	var multer  	= 	require('multer');
 
 	var fs 			= 	require('fs');
 	var user 		= 	require('../lib/users');
 	var auth 		= 	require('../lib/validation');
-	var streams	= 	require('../lib/fileupload');
+	var streams		= 	require('../lib/streamfile');
 
 
 	var app = express();
-	
+	var upload = multer({ dest: './uploads/' })
 
 	app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 	app.use(bodyParser.json({limit: '50mb'}));
@@ -19,11 +20,31 @@ router.get('/', function(req, res){
 	res.sendFile(__basedir + '/template/dashboard.html');
 });
 
-router.get('/fileStream', function(req, res){		
-	streams.fileread(req, function(err, response){
-		res.setHeader('Content-Type', 'application/json');
-	 	res.status(200);
-		res.json(response.toString());
+router.post('/fileStream', upload.single('file'), function (req, res, next) {
+ 	streams.fileread(req, function(err, response){
+ 		res.setHeader('Content-Type', 'application/json');
+	  	res.status(200);
+	 	res.json({data: response});
+ 	})
+})
+
+router.get('/validatejson', function(req, res){
+	res.sendFile(__basedir + '/template/validatejson.html');
+});
+
+router.get('/readJson', function(req, res){		
+	streams.jsonread(req, function(err, response){
+		auth.objectValid(response, function(error, objecttype){
+			
+			res.setHeader('Content-Type', 'application/json');
+			res.status(200);
+			if(objecttype){
+				res.json({
+					'is_valid' 		: 	objecttype,
+					'object_file'	: 	response
+				});
+			}
+		})
 	})
 });
 

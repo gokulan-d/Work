@@ -47,8 +47,12 @@ body{
 	display: inline-block;
 	padding: 0px 15px;
 }
+.topMenu li.active a{
+	color: #db3336
+}
 .topMenu a{
 	color: #333;
+	text-transform: uppercase;
 }
 .formFiles input#readfi{
 	visibility: hidden;
@@ -73,4 +77,37 @@ body{
 	display: block;
 	text-align: center;
 	line-height: 210px;
+}
+.objGre{
+	background: #db333620;
+	padding: 20px;
+	border-radius: 5px;
+}
+.marginTop20{
+	margin-top: 20px !important;
+}
+.readarea{
+	position: relative;
+}
+.readarea pre{
+	white-space: pre-line;
+}
+span.fa-closeMe{
+	position: absolute;
+	right: 20px;
+	top : 15px;
+	display: block;
+}
+span.fa-closeMe span{
+	width: 16px;
+	height: 3px;
+	display: block;
+	background: #333;
+}
+span.fa-closeMe span:first-child{
+	transform: rotateZ(45deg);
+}
+span.fa-closeMe span:nth-child(2){
+	transform: rotateZ(-45deg);
+    margin-top: -3px; 
 }

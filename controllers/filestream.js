@@ -1,9 +1,15 @@
-app.controller('fileReadCtrl',($scope,$http) => {
-	$scope.fileRead = function(){
-		$http.get('/fileStream').then(function(resp){
-			$scope.readable = resp.data;
-		})
+app.controller('fileReadCtrl',($scope,$http,Upload) => {
+	$scope.fileRead = function(files){
+		Upload.upload({
+          url: '/fileStream',
+          file: files
+        }).success(function(response){
+        	$scope.readable = response.data;
+        })
 	}
 
-	$scope.fileRead();
+
+	$scope.closeContnt = function(){
+		$scope.readable = '';
+	}
 });

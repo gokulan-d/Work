@@ -8,19 +8,29 @@
   		<div class="container" ng-controller="fileReadCtrl">
   			<nav class="topMenu well">
   				<ul class="list-unstyled margin0">
-  					<li class="active"><a href="">File stream</a></li>
-  					<li><a href="">JSON read</a></li>
+  					<li class="active"><a href="/">File stream</a></li>
+  					<li><a href="/validatejson">JSON read</a></li>
   					<li><a href="">Recursive method</a></li>
   				</ul>
   			</nav>
      
 
-	      	<h3 class="text-center">FILE READ</h3>
+	      	<h3 class="text-center">READ FILE</h3>
 
 
 	      	<div class="row">
-	      		<div class="col-sm-8 col-sm-offset-2">
-	      			{{readable}}
+	      		<div class="col-sm-8 col-sm-offset-2" ng-hide="readable">
+	      			<form class="formFiles">
+	      				<input type="file" id="readfi" ng-model="file" ngf-select="fileRead(file)">
+	      				<label for="readfi"></label>
+	      			</form>
+	      		</div>
+	      		<div class="col-sm-8 col-sm-offset-2 readarea" ng-show="readable">
+	      			<span class="fa-closeMe" ng-click="closeContnt()" ng-show="readable">
+	      				<span></span>
+	      				<span></span>
+	      			</span>
+	      			<pre>{{readable}}</pre>
 	      		</div>
 	      	</div>
       	</div>	
