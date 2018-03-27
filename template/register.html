@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="files/css/style.css" />	
+
+
+	</head>
+	<body ng-app="nodeApp">
+  		<div class="container" ng-controller="regisCtrl">
+  			<h2 class="text-center">Register your details</h2>
+
+
+  			<form class="well col-sm-4 col-sm-offset-4 logForm" name="signupform">
+  				<div class="form-group">
+            <input type="text" ng-model="username" placeholder="Enter your username here.." ng-keyup="validate('username')">
+          </div>
+          <div class="form-group">
+  					<input type="text" ng-model="phone" placeholder="Enter your phone number.." ng-keyup="validate('phone')">
+  				</div>
+
+          <div class="form-group">
+            <input type="password" ng-model="password"  placeholder="Enter your password here.." ng-keyup="validate('password')">
+          </div>
+
+  				<div class="form-group">
+  					<input type="password" ng-model="repassword"  placeholder="Confirm your password here.." ng-keyup="validate('repassword')">
+  				</div>
+  				<button class="btn btn-success" ng-click="submitForm()">submit</button>
+          <a href="/">Go Back</a>
+
+            
+            <div class="errReport" ng-show="hideForm">           
+                <ul class="list-unstyled">
+                    <li>{{errorMss.errormsg}}</li>                    
+                    <li ng-hide="username.length > 7">{{errorMss.usernameLength}}</li>                    
+                    <li ng-hide="hidePhone">{{errorMss.phoneNumeric}}</li>                    
+                    <li ng-hide="phone.length > 9">{{errorMss.phoneLenth}}</li>                    
+                    <li ng-hide="password">{{errorMss.pwd}}</li>                    
+                    <li ng-hide="hidePassword">{{errorMss.pwdValid}}</li>                    
+                    <li ng-hide="hideconfirm">{{errorMss.confirmPwd}}</li>                    
+                </ul>
+            </div>
+  			</form>
+  		</div>
+
+  	
+      <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   
+    <script src="http://www.fsfoo.com/js/vendor/handlebars-1.0.rc.2.js"></script>
+
+    <!-- Angular library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="files/js/app.js"></script>
+   
+    <script src="controllers/registerctrl.js"></script>
+	</body>
+</html>

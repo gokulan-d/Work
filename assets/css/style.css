@@ -1,0 +1,76 @@
+*{
+	margin:0px;
+	padding : 0px;
+}
+
+body{
+	font-size: 14px;
+}
+.margin0{
+	margin : 0px !important;
+}
+.padding0{
+	padding: 0px !important;
+}
+.form-group{
+	width : 100%;
+	height: 36px;
+	border : 1px solid #ccc;
+}
+
+.form-group input{
+	width: 100%;
+	height: 36px;
+	border : none;
+	background: transparent;
+	text-indent: 10px;
+}
+
+.errReport{
+	padding: 0px 10px;
+	border:1px solid #db3360;
+	background-color: #db333620;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+.errReport ul{
+	margin : 0px;
+}
+.errReport ul li{
+	line-height: 32px;
+	color : #db3350;
+}
+.topMenu{
+	margin-top: 10px;
+}
+.topMenu li{
+	display: inline-block;
+	padding: 0px 15px;
+}
+.topMenu a{
+	color: #333;
+}
+.formFiles input#readfi{
+	visibility: hidden;
+}
+.formFiles label{
+	background: url('../images/ftp.png');
+    height: 160px;
+	width: 115px;
+	background-size: 55px;
+	background-position: center;
+	border: 2px dashed #303030;
+	background-repeat: no-repeat;
+	padding: 15px 0px;
+	position: relative;
+	text-align: center;
+	cursor: pointer;
+	margin:0px auto;
+	display: block;
+}
+.formFiles label:after{
+	content: 'Upload Files';
+	display: block;
+	text-align: center;
+	line-height: 210px;
+}

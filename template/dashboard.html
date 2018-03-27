@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="files/css/style.css" />	
+	</head>
+	<body ng-app="nodeApp">
+  		<div class="container" ng-controller="fileReadCtrl">
+  			<nav class="topMenu well">
+  				<ul class="list-unstyled margin0">
+  					<li class="active"><a href="">File stream</a></li>
+  					<li><a href="">JSON read</a></li>
+  					<li><a href="">Recursive method</a></li>
+  				</ul>
+  			</nav>
+     
+
+	      	<h3 class="text-center">FILE READ</h3>
+
+
+	      	<div class="row">
+	      		<div class="col-sm-8 col-sm-offset-2">
+	      			{{readable}}
+	      		</div>
+	      	</div>
+      	</div>	
+
+  		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<!-- Angular library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+		
+		<script src="files/js/file-upload.js"></script>
+		<script src="files/js/file-upload-shim.js"></script>
+
+		<script src="files/js/app.js"></script>
+		<script src="controllers/filestream.js"></script>
+	</body>
+</html>
