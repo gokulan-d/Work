@@ -3,23 +3,49 @@
 	var url 		= 	require('url'); 
 	var bodyParser 	= 	require('body-parser');
 	var multer  	= 	require('multer');
-
 	var fs 			= 	require('fs');
+	var request		= 	require('request');
+
+
+
+
+
 	var user 		= 	require('../lib/users');
 	var auth 		= 	require('../lib/validation');
 	var streams		= 	require('../lib/streamfile');
+	var contacts	= 	require('../lib/recursive_callback');
 
 
 	var app = express();
 	var upload = multer({ dest: './uploads/' })
 
-	app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
-	app.use(bodyParser.json({limit: '50mb'}));
+	app.use(bodyParser.urlencoded({extended: true }));
+	app.use(bodyParser.json());
+
+		//    TEMPLATE ROUTE
 
 router.get('/', function(req, res){
 	res.sendFile(__basedir + '/template/dashboard.html');
 });
 
+router.get('/register', function(req, res){
+	res.sendFile(__basedir + '/template/register.html');
+});
+
+router.get('/dashboard', function(req, res){
+	res.sendFile(__basedir + '/template/dashboard.html');
+});
+
+router.get('/validatejson', function(req, res){
+	res.sendFile(__basedir + '/template/validatejson.html');
+});
+
+router.get('/recursive', function(req, res){
+	res.sendFile(__basedir + '/template/recursive.html');
+});
+	
+		//    FUNCTION ROUTE
+		
 router.post('/fileStream', upload.single('file'), function (req, res, next) {
  	streams.fileread(req, function(err, response){
  		res.setHeader('Content-Type', 'application/json');
@@ -28,14 +54,9 @@ router.post('/fileStream', upload.single('file'), function (req, res, next) {
  	})
 })
 
-router.get('/validatejson', function(req, res){
-	res.sendFile(__basedir + '/template/validatejson.html');
-});
-
 router.get('/readJson', function(req, res){		
 	streams.jsonread(req, function(err, response){
-		auth.objectValid(response, function(error, objecttype){
-			
+		auth.objectValid(response, function(error, objecttype){			
 			res.setHeader('Content-Type', 'application/json');
 			res.status(200);
 			if(objecttype){
@@ -46,14 +67,6 @@ router.get('/readJson', function(req, res){
 			}
 		})
 	})
-});
-
-router.get('/register', function(req, res){
-	res.sendFile(__basedir + '/template/register.html');
-});
-
-router.get('/dashboard', function(req, res){
-	res.sendFile(__basedir + '/template/dashboard.html');
 });
 
 router.post('/verify_me',function(req,resp){
@@ -88,6 +101,16 @@ router.post('/registerForm',function(req,res){
 		}
 	})
 });
+
+router.get('/contact-api',function(req,resp){
+	console.log("inside contact-api");
+	contacts.getcontacts( '', function(err, data){
+		console.log("getcontacts");
+		resp.setHeader('Content-Type', 'application/json');
+		resp.status(200);
+		resp.json(data);
+	})
+})
 
 module.exports = router;
 
