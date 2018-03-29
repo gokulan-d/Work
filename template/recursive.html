@@ -2,10 +2,12 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="files/css/style.css" />	
 	</head>
 	<body ng-app="nodeApp">
   		<div class="container" ng-controller="apiContrller">
+  				<div class="loader-class" ng-show="loader"></div>
   			<nav class="topMenu well">
   				<ul class="list-unstyled margin0">
   					<li><a href="/">File stream</a></li>
@@ -15,13 +17,46 @@
   			</nav>
      
 
-	      	<h3 class="text-center">RECURIVE FUNCTION</h3>
+	      	<h3 class="text-center">MOXI WORKS CONTACTS</h3>
 
 
 	      	<div class="row">
-	      		<div class="col-sm-8 col-sm-offset-2">
-	      			
+	      		<div class="search_bar">
+	      			<input type="text" ng-model="search_tab" placeholder="Search here..">
+	      			<button><i class="fa fa-search"></i></button>
 	      		</div>
+	      		<table class="showTable table table-bordered table-condensed">
+	      			<thead>
+	      				<tr>
+	      					<td>S.no</td>
+	      					<td>Contact_Id</td>
+	      					<td>Name</td>
+	      					<td>Email</td>
+	      					<td>Phone</td>
+	      					<td>Social Prof</td>
+	      				</tr>
+
+	      				<tbody>
+	      					<tr ng-repeat="row in contact_data | filter : search_tab | limitTo : 10">
+	      						<td>{{$index + 1}}</td>
+	      						<td>{{row.moxi_works_contact_id}}</td>
+	      						<td>{{row.contact_name}}</td>
+	      						<td>{{row.primary_email_address}}</td>
+	      						<td>{{row.primary_phone_number}}</td>
+	      						<td>
+	      							<ul class="list-unstyled social_href">
+	      								<li ng-repeat="icon in row.social_media_profiles">
+	      									<a class="fa fa-facebook" ng-if="$index == 0 && icon.key == 'facebook'" href="{{icon.url}}" ng-class="{'displayNone' : icon.url == '' || icon.url == null}"></a>
+	      									<a class="fa fa-twitter"  ng-if="$index == 2 && icon.key == 'twitter'"  href="{{icon.url}}" ng-class="{'displayNone' : icon.url == '' || icon.url == null}"></a>
+	      									<a class="fa fa-linkedin" ng-if="$index == 1 && icon.key == 'linkedin'" href="{{icon.url}}" ng-class="{'displayNone' : icon.url == '' || icon.url == null}"></a>
+	      									<a class="fa fa-google-plus" ng-if="$index == 3 && icon.key == 'googleplus'" href="{{icon.url}}" ng-class="{'displayNone' : icon.url == '' || icon.url == null}"></a>
+	      								</li>
+	      							</ul>
+	      						</td>
+	      					</tr>
+	      				</tbody>
+	      			</thead>
+	      		</table>
 	      	</div>
       	</div>	
 

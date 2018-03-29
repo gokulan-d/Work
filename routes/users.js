@@ -14,6 +14,7 @@
 	var auth 		= 	require('../lib/validation');
 	var streams		= 	require('../lib/streamfile');
 	var contacts	= 	require('../lib/recursive_callback');
+	var mongo		= 	require('../lib/mongoconnection');
 
 
 	var app = express();
@@ -103,12 +104,26 @@ router.post('/registerForm',function(req,res){
 });
 
 router.get('/contact-api',function(req,resp){
-	console.log("inside contact-api");
 	contacts.getcontacts( '', function(err, data){
-		console.log("getcontacts");
-		resp.setHeader('Content-Type', 'application/json');
-		resp.status(200);
-		resp.json(data);
+		mongo.connection(data,function(error, dbstatus){
+			if(!error){
+				console.log('User - Mongo_connection error is: '+error);
+			}
+			resp.setHeader('Content-Type', 'application/json');
+			resp.json(dbstatus);
+		})
+	})
+})
+
+router.get('/get-contacts',function(req,resp){
+	mongo.getContacts('', function(err, results){
+		if(!err){
+			resp.setHeader('Content-Type', 'application/json');
+			resp.json(results);
+		}else{
+			resp.setHeader('Content-Type', 'application/json');
+			resp.json(err);
+		}
 	})
 })
 

@@ -12,6 +12,7 @@
     "multer": "^1.3.0",
     "mysql": "^2.15.0",
     "nodemon": "^1.17.2",
+    "mongodb": "*",
     "request": "^2.85.0"
   },
   "devDependencies": {},
