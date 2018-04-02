@@ -28,7 +28,6 @@
 	      		<table class="showTable table table-bordered table-condensed">
 	      			<thead>
 	      				<tr>
-	      					<td>S.no</td>
 	      					<td>Contact_Id</td>
 	      					<td>Name</td>
 	      					<td>Email</td>
@@ -37,8 +36,7 @@
 	      				</tr>
 
 	      				<tbody>
-	      					<tr ng-repeat="row in contact_data | filter : search_tab | limitTo : 10">
-	      						<td>{{$index + 1}}</td>
+	      					<tr ng-repeat="row in contact_data | filter : search_tab | startFrom:currentPage*pageSize | limitTo:pageSize">
 	      						<td>{{row.moxi_works_contact_id}}</td>
 	      						<td>{{row.contact_name}}</td>
 	      						<td>{{row.primary_email_address}}</td>
@@ -57,6 +55,16 @@
 	      				</tbody>
 	      			</thead>
 	      		</table>
+
+	      		<div class="row">
+	      			<div class="pull-right">
+	      				<ul class="pagination paginat_s">
+	      					<li><a><button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1" class="fa fa-angle-left"></button></a></li>
+	      					<li><a class="noBorder">{{currentPage+1}}/{{numberOfPages()}}</a></li>
+	      					<li><a><button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1" class="fa fa-angle-right"></button></a></li>
+	      				</ul>
+	      			</div>
+	      		</div>
 	      	</div>
       	</div>	
 

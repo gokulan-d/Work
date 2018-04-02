@@ -116,15 +116,15 @@ router.get('/contact-api',function(req,resp){
 })
 
 router.get('/get-contacts',function(req,resp){
+	console.log("inside get contacts==========>")
 	mongo.getContacts('', function(err, results){
 		if(!err){
-			resp.setHeader('Content-Type', 'application/json');
-			resp.json(results);
+			resp.send(results);
+
 		}else{
-			resp.setHeader('Content-Type', 'application/json');
-			resp.json(err);
+			resp.send(err);
 		}
-	})
+	});
 })
 
 module.exports = router;

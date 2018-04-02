@@ -184,3 +184,26 @@ table.showTable tbody tr:nth-child(even){
     right: 19px;
     border: none;
 }
+
+ul.paginat_s{
+	list-style: none;
+}
+ul.paginat_s li{
+	padding: 0px 10px;	
+	display: inline-block;
+}
+ul.paginat_s li button{
+	padding: 10px 18px;
+	background: transparent;
+	border:none;
+}
+ul.paginat_s li a{
+	color: inherit;
+	padding: 0px;
+}
+.noBorder{
+	border:none!important;
+}
+[disabled = "disabled"]{
+	cursor: not-allowed !important;
+}
