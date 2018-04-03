@@ -127,6 +127,14 @@ router.get('/get-contacts',function(req,resp){
 	});
 })
 
+router.get('/drop-contact_api',function(req,resp){
+	mongo.drop_listData('', function(err, results){
+		if(results){
+			resp.send(results);
+		}
+	});
+})
+
 module.exports = router;
 
 	

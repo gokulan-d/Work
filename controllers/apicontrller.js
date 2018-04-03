@@ -1,5 +1,8 @@
 app.controller('apiContrller',($scope,$http,$filter) => {
 	
+	//Export Option
+
+	$scope.filename = 'contact_array';
 
 	// Pagination
 
@@ -12,18 +15,20 @@ app.controller('apiContrller',($scope,$http,$filter) => {
 	    }
     
     	$scope.numberOfPages=function(){
-    		console.log($scope.getData());
-        	return Math.ceil($scope.getData().length/$scope.pageSize);
+    		return Math.ceil($scope.getData().length/$scope.pageSize);
         }	
 
 	$scope.loadContacts = ()=> {
+		console.log('load-contacts');
 		$scope.loader = true;
 		$http.get('/contact-api').then(function(respo){
 			$scope.loader = false;
+			$scope.getContacts();
 		})
 	}
 
 	$scope.getContacts = ()=> {
+		console.log('get-contacts');
 		$scope.loader = true;
 		$http.get('/get-contacts').then(function(respo){
 			$scope.contact_data = respo.data;
@@ -32,8 +37,20 @@ app.controller('apiContrller',($scope,$http,$filter) => {
 		})
 	}
 
-	$scope.getContacts();
-                
+
+	$scope.syncData = ()=> {
+		console.log('start-sync');
+		//$scope,loader = true;	
+		$http.get('/drop-contact_api').then(function(response){
+			var status = response.data;
+			if(status){
+				$scope.loadContacts();
+			}
+		})
+	}
+	
+	// $scope.getContacts();     
+	$scope.loadContacts();     
     	
 });
 

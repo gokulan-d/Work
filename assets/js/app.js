@@ -1,1 +1,1 @@
-var app = angular.module('nodeApp', ['ngFileUpload']);
+var app = angular.module('nodeApp', ['ngFileUpload','ngSanitize', 'ngCsv']);

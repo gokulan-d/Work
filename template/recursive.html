@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="files/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="files/css/style.css" />	
 	</head>
 	<body ng-app="nodeApp">
@@ -20,11 +20,22 @@
 	      	<h3 class="text-center">MOXI WORKS CONTACTS</h3>
 
 
-	      	<div class="row">
+	      	<div class="row margin0">
 	      		<div class="search_bar">
 	      			<input type="text" ng-model="search_tab" placeholder="Search here..">
 	      			<button><i class="fa fa-search"></i></button>
 	      		</div>
+	      		<div class="export_dv">
+	      			<i class="fa fa-cloud-download"></i>
+	      			<ul class="list-unstyled">
+	      				<li ng-csv="contact_data" filename="{{ filename }}.csv" field-separator="{{separator}}" decimal-separator="{{decimalSeparator}}" data-toggle="tooltip" title="Export to CSV!" data-placement="right"><i class="fa fa-file-excel-o"></i></li>
+	      			</ul>
+	      		</div>
+
+	      		<div class="export_dv pull-right">
+	      			<i data-toggle="tooltip" title="Refresh Data" class="fa fa-refresh" ng-click="syncData()"></i>
+	      		</div>
+	      	</div>	
 	      		<table class="showTable table table-bordered table-condensed">
 	      			<thead>
 	      				<tr>
@@ -74,11 +85,20 @@
 
 		<!-- Angular library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.min.js"></script>
+    	<script src="files/js/ng-csv.js"></script>
 		
 		<script src="files/js/file-upload.js"></script>
 		<script src="files/js/file-upload-shim.js"></script>
 
 		<script src="files/js/app.js"></script>
 		<script src="controllers/apicontrller.js"></script>
+
+
+		<script>
+			$(document).ready(function(){
+			    $('[data-toggle="tooltip"]').tooltip();   
+			});
+		</script>
 	</body>
 </html>
