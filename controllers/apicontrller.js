@@ -49,8 +49,8 @@ app.controller('apiContrller',($scope,$http,$filter) => {
 		})
 	}
 	
-	// $scope.getContacts();     
-	$scope.loadContacts();     
+	$scope.getContacts();     
+	// $scope.loadContacts();     
     	
 });
 
